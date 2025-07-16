@@ -5,6 +5,7 @@ import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { initializeAnimation }        from './Animacion';
 import { useNavigate }                from 'react-router-dom';
 import { useAuth }                    from '../../context/AuthContext';
+import Main                           from '../../util/Main';
 import './styles/login.css';
 const { Text } = Typography;
 
@@ -34,24 +35,19 @@ const Login = () => {
   }, []);
 
   const onFinish = async (values) => {
-    setLoading(true);
     try {
-      // Aquí puedes llamar a tu función de autenticación
-      const response = {
-        usuario: values.usuario,
-        menus: [
-          { path: "/dashboard", nombre: "Dashboard" },
-        ],
-        permisos: {
-          dashboard: { ver: true, editar: false }
+      const urlValida = '/public/login'
+      setLoading(true);
+      await Main.Request(urlValida,'POST',values).then(async(resp)=>{
+        if(resp && resp.data.usuario.length > 0){
+          setLoading(false);
+          // Aquí puedes llamar a tu función de autenticación
+          login(resp.data);
+          navigate("/dashboard");     
+          await new Promise(resolve => setTimeout(resolve, 1000));      
+          messageApi.success('Inicio de sesión exitoso');
         }
-      };
-      login(response);
-      messageApi.success("Login exitoso");
-      navigate("/dashboard");     
-      // Simulación de llamada a API
-      await new Promise(resolve => setTimeout(resolve, 1000));      
-      messageApi.success('Inicio de sesión exitoso');
+      })      
     } catch (error) {
       messageApi.error('Error al iniciar sesión');
       console.error('Error:', error);

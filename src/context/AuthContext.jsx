@@ -4,7 +4,8 @@ const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [user     , setUser    ] = React.useState(null);
+  const [usuario  , setUser    ] = React.useState(null);
+  const [nombre   , setNombre  ] = React.useState(null);
   const [menus    , setMenus   ] = React.useState([]);
   const [permisos , setPermisos] = React.useState({});
 
@@ -19,10 +20,11 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = ({ usuario, menus, permisos }) => {
-    const session = { usuario, menus, permisos };
+  const login     = ({ usuario, nombre, menus, permisos }) => {
+    const session =  { usuario, nombre, menus, permisos };
     sessionStorage.setItem("session", JSON.stringify(session));
     setUser(usuario);
+    setNombre(nombre)
     setMenus(menus);
     setPermisos(permisos);
   };
@@ -31,12 +33,13 @@ export const AuthProvider = ({ children }) => {
     sessionStorage.clear();
     setUser(null);
     setMenus([]);
+    setNombre([])
     setPermisos({});
     navigate("/");
   };
 
   return (
-    <AuthContext.Provider value={{ user, menus, permisos, login, logout }}>
+    <AuthContext.Provider value={{ usuario, nombre, menus, permisos, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
