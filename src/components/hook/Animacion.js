@@ -144,8 +144,8 @@ function animate() {
 }
 
 // Funciones públicas
-export function initializeAnimation() {
-  canvas = document.getElementById('network-canvas');
+export function initializeAnimation(id = false) {
+  canvas = document.getElementById(id ? `network-canvas_${id}` : `network-canvas`);
   
   if (!canvas) {
     console.error('Canvas element not found');

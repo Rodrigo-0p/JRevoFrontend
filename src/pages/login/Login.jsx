@@ -2,7 +2,7 @@ import * as React                     from 'react';
 import { Form, Input, Button
         , Typography, message }       from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { initializeAnimation }        from './Animacion';
+import { initializeAnimation }        from '../../components/hook/Animacion';
 import { useNavigate }                from 'react-router-dom';
 import { useAuth }                    from '../../context/AuthContext';
 import Main                           from '../../util/Main';
@@ -23,7 +23,6 @@ const pass = [{ required: true,
 
 const Login = () => {
 
-  const [messageApi, contextHolder] = message.useMessage();
   const [form]      = Form.useForm();
   const [loading, setLoading] = React.useState(false);
   const { login } = useAuth();
@@ -44,12 +43,13 @@ const Login = () => {
           // Aquí puedes llamar a tu función de autenticación
           login(resp.data);
           navigate("/dashboard");     
-          await new Promise(resolve => setTimeout(resolve, 1000));      
-          messageApi.success('Inicio de sesión exitoso');
+          await new Promise(resolve => setTimeout(resolve,100));  
+          message.success('Inicio de sesión exitoso')
+          // messageApi.success('Inicio de sesión exitoso');
         }
       })      
     } catch (error) {
-      messageApi.error('Error al iniciar sesión');
+      message.error('Error al iniciar sesión');
       console.error('Error:', error);
     } finally {
       setLoading(false);
@@ -57,14 +57,12 @@ const Login = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    messageApi.error('Por favor, completa todos los campos correctamente');
+    message.error('Por favor, completa todos los campos correctamente');
   };
 
   return (
     <div className="login-page">
-      { contextHolder }
-      <canvas id="network-canvas"></canvas>
-      
+      <canvas id="network-canvas"/>
       <div className="login-container">
         <div className="login-header">
           <div className="logo-container">

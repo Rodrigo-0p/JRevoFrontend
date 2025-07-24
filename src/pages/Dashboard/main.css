@@ -1,0 +1,190 @@
+
+.dashboard-layout {
+  height: 100vh;
+/* overflow: hidden; */
+}
+
+.logo {
+display: flex;
+align-items: center;
+padding: 16px;
+}
+
+.logo-text {
+color: #fff;
+font-size: 20px;
+margin-left: 8px;
+font-weight: bold;
+}
+
+.dashboard-header {
+background: #fff;
+padding: 0 24px;
+box-shadow: 0 2px 8px #f0f1f2;
+display: flex;
+align-items: center;
+height: 64px;
+}
+
+.dashboard-search {
+width: 300px;
+margin-left: 16px;
+}
+
+.header-company {
+color: #333;
+font-size: 16px;
+}
+
+.dashboard-content {
+margin: 24px;
+padding: 24px;
+background: #f0f2f5;
+overflow-y: auto;
+}
+
+.metrics-cards .ant-card {
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card-value {
+font-size: 2rem;
+font-weight: bold;
+}
+
+.activity-section .ant-card {
+border-radius: 8px;
+box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 768px) {
+  .dashboard-search {
+  width: 200px;
+  }
+}
+
+/* src/layouts/DashboardLayout.css */
+.content-area {
+  margin: 24px;
+  padding: 24px;
+  background: #f5f5f5;
+  min-height: calc(100vh - 64px);
+}
+
+.metric-card {
+  border-radius: 12px;
+  box-shadow: 0px 9px 15px 0px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.metric-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.activity-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: #fff;
+}
+
+/* src/components/AppHeader.css */
+.spaceAvatar:hover {
+  opacity: 0.85;
+}
+
+.buttonDropdown {
+  background: transparent;
+  border: none;
+  color: #5956d8;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttonDropdown:hover {
+  text-decoration: underline;
+}
+
+
+#network-canvas_sider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  z-index: 0;
+}
+
+/* El Sider debe ser transparente y relativo */
+.dashboard-sider {
+  background: transparent !important;
+  position: relative;
+}
+
+/* El canvas debe ocupar TODO el Sider y estar detrás */
+.sider-canvas {
+  position: absolute;  /* no fixed */
+  top: 0;
+  left: 0;
+  width: 100%;         /* ancho completo del Sider */
+  height: 100%;        /* alto completo del Sider */
+  z-index: -1;         /* detrás del contenido */
+}
+
+/* Contenedor del contenido sobre el canvas */
+.sider-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+
+.logo-container-dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 15px;
+}
+
+.logo-icon-dashboard {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #4a5bb5, #764ba2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.logo-icon-dashboard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
+  animation: shine 3s infinite;
+}
+
+.logo-j-dashboard {
+  color: white;
+  font-size: 25px;
+  font-weight: 700;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 1;
+  position: relative;
+}
+
+.logo-text-dashboard {
+  font-size: 25px;
+  font-weight: 700;
+  color: white;
+  letter-spacing: -1px;
+}

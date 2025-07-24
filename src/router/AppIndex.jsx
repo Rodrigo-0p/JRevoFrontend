@@ -13,16 +13,16 @@ const AppRouter = () => {
   return (
       <Routes>
         <Route path="/" element={<Login />} />
-          {route.map((ruta, indice) => {
-            const isPrivate = ruta.private ?? true; // Por defecto todas privadas
-            const element = isPrivate
-              ? <ProtectedRoute>
-                  <ruta.component />
-                </ProtectedRoute>
-              : <ruta.component />;
-            return <Route key={indice} path={ruta.path} element={element} />;
-          })}        
-        <Route path="*"      element={<NotFound />} />        
+        {route.map((ruta, indice) => {
+          const isPrivate = ruta.private ?? true; // Por defecto todas privadas
+          const element = isPrivate
+            ? <ProtectedRoute>
+                <ruta.component/>                  
+              </ProtectedRoute>
+            : <ruta.component />;
+          return <Route key={indice} path={ruta.path} element={element} />;
+        })}          
+        <Route path="*" element={<NotFound />} />
       </Routes>
   )
 };
